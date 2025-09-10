@@ -1,5 +1,7 @@
-from django.shortcuts import render
-from .models import Quote
+from django.shortcuts import render, redirect, get_object_or_404
+
+from .forms import QuoteAdd
+from .quotes import Quote
 import random
 
 
@@ -21,3 +23,14 @@ def index(request):
 def top_quotes(request):
     top = Quote.objects.order_by('-likes')[:10]
     return render(request, 'top.html', {'top_quotes': top})
+
+
+def add_quote(request):
+    if request.method == 'POST':
+        form = QuoteAdd(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+    else:
+        form = QuoteAdd()
+    return render(request, 'add_quote.html', {'form': form})

@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from app.models import Quote
+from app.quotes import Quote
 
 
 @admin.register(Quote)

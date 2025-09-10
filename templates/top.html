@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Топ 10 цитат</title>
+</head>
+<body>
+    <h1>Топ 10 цитат по лайкам</h1>
+    <ul>
+    {% for quote in quotes %}
+        <li>{{quote.quote}} ({{quote.source}}) — Лайки: {{quote.likes}}</li>
+    {% endfor %}
+    </ul>
+    <a href="{% url 'index' %}">Назад</a>
+</body>
+</html>
