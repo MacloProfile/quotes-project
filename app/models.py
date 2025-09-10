@@ -16,3 +16,11 @@ class Quote(models.Model):
     def clean(self):
         if Quote.objects.filter(source=self.source).exclude(pk=self.pk).count() >= 3:
             raise ValidationError(f'Для источника "{self.source}" уже есть 3 цитаты.')
+
+    def like(self):
+        self.likes += 1
+        self.save(update_fields=['likes'])
+
+    def dislike(self):
+        self.dislikes += 1
+        self.save(update_fields=['dislikes'])

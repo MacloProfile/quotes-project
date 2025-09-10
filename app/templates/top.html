@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Топ 10 цитат</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <h1>Топ 10 цитат по лайкам</h1>
+
+    {% for quote in quotes %}
+        <div class="quote">
+            <p>{{ quote.quote }}</p>
+            <p><strong>Источник:</strong> {{quote.source}}</p>
+            <p><strong>Лайки:</strong> {{quote.likes}} | <strong>Дизлайки:</strong> {{quote.dislikes}}</p>
+
+            <div class="buttons">
+                <form method="post" action="{% url 'like_quote' quote.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="like">Лайк</button>
+                </form>
+                <form method="post" action="{% url 'dislike_quote' quote.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="dislike">Дизлайк</button>
+                </form>
+            </div>
+        </div>
+    {% empty %}
+        <p>Цитат пока нет</p>
+    {% endfor %}
+
+    <a href="{% url 'index' %}">Назад</a>
+</body>
+</html>

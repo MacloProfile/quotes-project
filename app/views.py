@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 
 from .forms import QuoteAdd
-from .quotes import Quote
+from .models import Quote
 import random
 
 
@@ -34,3 +34,16 @@ def add_quote(request):
     else:
         form = QuoteAdd()
     return render(request, 'add_quote.html', {'form': form})
+
+
+def like_quote(request, quote_id):
+    quote = get_object_or_404(Quote, pk=quote_id)
+    quote.like()
+    return redirect('index')
+
+
+def dislike_quote(request, quote_id):
+    quote = get_object_or_404(Quote, pk=quote_id)
+    quote.dislike()
+    return redirect('index')
+

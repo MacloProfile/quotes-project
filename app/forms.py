@@ -1,6 +1,6 @@
 from django import forms
 
-from app.quotes import Quote
+from app.models import Quote
 
 
 class QuoteAdd(forms.ModelForm):
