@@ -10,8 +10,7 @@ def index(request):
     quote = None
 
     if quotes:
-        weights = [q.weight for q in quotes]
-
+        weights = [min(max(q.weight, 1), 3) for q in quotes]
         quote = random.choices(quotes, weights=weights, k=1)[0]
 
         quote.views += 1
@@ -21,7 +20,7 @@ def index(request):
 
 
 def top_quotes(request):
-    top = Quote.objects.order_by('-likes')[:10]
+    top = list(Quote.objects.order_by('-likes')[:10])
     return render(request, 'top.html', {'top_quotes': top})
 
 
