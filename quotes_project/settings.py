@@ -68,3 +68,6 @@ DATABASES = {
         'PORT': os.getenv('DB_PORT'),
     }
 }
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'

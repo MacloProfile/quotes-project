@@ -5,8 +5,8 @@ from django.urls import reverse_lazy
 
 import random
 
-from app.forms import QuoteAdd
-from app.models import Quote
+from app.forms.quote_add_form import QuoteAdd
+from app.models.quote import Quote
 
 
 class IndexView(View):
