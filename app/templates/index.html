@@ -9,7 +9,7 @@
     <h1>Случайная цитата</h1>
 
     {% if quote %}
-        {% include 'blocks/quote_block.html' %}
+        {% include 'blocks/quote_block.html' with quote=quote can_vote=True %}
     {% else %}
         <p>Цитат пока нет</p>
     {% endif %}

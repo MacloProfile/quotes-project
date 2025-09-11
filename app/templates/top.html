@@ -9,7 +9,7 @@
     <h1>Топ 10 цитат по лайкам</h1>
 
     {% for quote in top_quotes %}
-        {% include 'blocks/quote_block.html' %}
+        {% include 'blocks/quote_block.html' with quote=quote can_vote=False %}
     {% empty %}
         <p>Цитат пока нет</p>
     {% endfor %}

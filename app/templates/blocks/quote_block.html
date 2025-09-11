@@ -3,6 +3,7 @@
     <p><strong>Источник:</strong> {{quote.source}}</p>
     <p><strong>Просмотры:</strong> {{quote.views}}</p>
 
+    {% if can_vote %}
     <div class="buttons">
         <form method="post" action="{% url 'like_quote' quote.id %}">
             {% csrf_token %}
@@ -13,4 +14,7 @@
             <button type="submit" class="dislike">👎 Дизлайк ({{ quote.dislikes }})</button>
         </form>
     </div>
+    {% else %}
+        <p>Лайки: {{quote.likes}} | Дизлайки: {{quote.dislikes}}</p>
+    {% endif %}
 </div>
