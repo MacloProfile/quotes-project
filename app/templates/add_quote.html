@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <title>Редактировать цитату</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
 <h1>Добавить цитату</h1>
     <form method="post">
         {% csrf_token %}
@@ -8,8 +13,5 @@
         <button type="submit">Добавить</button>
     </form>
     <a href="{% url 'index' %}">Назад</a>
-</head>
-<body>
-
 </body>
 </html>

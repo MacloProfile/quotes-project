@@ -9,26 +9,7 @@
     <h1>Случайная цитата</h1>
 
     {% if quote %}
-        <div class="quote">
-            <p><strong>Цитата:</strong> {{quote.quote}}</p>
-            <p><strong>Источник:</strong> {{quote.source}}</p>
-            <p><strong>Просмотры:</strong> {{quote.views}}</p>
-            <p><strong>Лайки:</strong> {{quote.likes}} | <strong>Дизлайки:</strong> {{quote.dislikes}}</p>
-
-            <div class="buttons">
-                <form method="post" action="{% url 'like_quote' quote.id %}">
-                    {% csrf_token %}
-                    <button type="submit" class="like">Лайк</button>
-                </form>
-
-                <form method="post" action="{% url 'dislike_quote' quote.id %}">
-                    {% csrf_token %}
-                    <button type="submit" class="dislike">Дизлайк</button>
-                </form>
-            </div>
-
-            <a href="{% url 'edit_quote' quote.id %}">Редактировать</a>
-        </div>
+        {% include 'blocks/quote_block.html' %}
     {% else %}
         <p>Цитат пока нет</p>
     {% endif %}

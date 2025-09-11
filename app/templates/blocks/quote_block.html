@@ -1,0 +1,16 @@
+<div class="quote">
+    <p>{{ quote.quote }}</p>
+    <p><strong>Источник:</strong> {{quote.source}}</p>
+    <p><strong>Просмотры:</strong> {{quote.views}}</p>
+
+    <div class="buttons">
+        <form method="post" action="{% url 'like_quote' quote.id %}">
+            {% csrf_token %}
+            <button type="submit" class="like">👍 Лайк ({{ quote.likes }})</button>
+        </form>
+        <form method="post" action="{% url 'dislike_quote' quote.id %}">
+            {% csrf_token %}
+            <button type="submit" class="dislike">👎 Дизлайк ({{ quote.dislikes }})</button>
+        </form>
+    </div>
+</div>
