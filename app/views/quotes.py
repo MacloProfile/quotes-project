@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, UpdateView
 from django.urls import reverse_lazy
 
 import random
@@ -36,6 +36,13 @@ class AddQuoteView(CreateView):
     model = Quote
     form_class = QuoteAdd
     template_name = 'add_quote.html'
+    success_url = reverse_lazy('index')
+
+
+class EditQuoteView(UpdateView):
+    model = Quote
+    form_class = QuoteAdd
+    template_name = 'edit_quote.html'
     success_url = reverse_lazy('index')
 
 

@@ -26,6 +26,8 @@
                     <button type="submit" class="dislike">Дизлайк</button>
                 </form>
             </div>
+
+            <a href="{% url 'edit_quote' quote.id %}">Редактировать</a>
         </div>
     {% else %}
         <p>Цитат пока нет</p>
