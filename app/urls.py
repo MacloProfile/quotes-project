@@ -1,10 +1,11 @@
 from django.urls import path
-from . import views
+
+from app.views.quotes import IndexView, TopQuotesView, AddQuoteView, LikeQuoteView, DislikeQuoteView
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('top/', views.top_quotes, name='top_quotes'),
-    path('add/', views.add_quote, name='add_quote'),
-    path('like/<int:quote_id>/', views.like_quote, name='like_quote'),
-    path('dislike/<int:quote_id>/', views.dislike_quote, name='dislike_quote')
+    path('', IndexView.as_view(), name='index'),
+    path('top/', TopQuotesView.as_view(), name='top_quotes'),
+    path('add/', AddQuoteView.as_view(), name='add_quote'),
+    path('like/<int:quote_id>/', LikeQuoteView.as_view(), name='like_quote'),
+    path('dislike/<int:quote_id>/', DislikeQuoteView.as_view(), name='dislike_quote'),
 ]
