@@ -75,7 +75,19 @@ a:hover {
     text-decoration: underline;
 }
 
+.quotes-grid {
+    line-height: 1.5;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: #f9f9f9;
+}
+
 .quote-card {
-    border-bottom: 1px solid #ccc;
     padding: 15px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.quote-card:last-child {
+    border-bottom: none;
 }
