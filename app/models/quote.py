@@ -3,7 +3,9 @@ from django.db import models
 
 
 class Quote(models.Model):
-    quote = models.TextField(unique=True)
+    quote = models.TextField(unique=True, error_messages={
+        'unique': "Такая цитата уже есть в базе."
+    })
     source = models.CharField(max_length=255)
     weight = models.PositiveIntegerField(default=1)
     views = models.PositiveIntegerField(default=0)
@@ -18,6 +20,10 @@ class Quote(models.Model):
             raise ValidationError(f'Для источника "{self.source}" уже есть 3 цитаты.')
         if self.weight < 1 or self.weight > 3:
             raise ValidationError("Вес цитаты должен быть в диапазоне от 1 до 3.")
+        if len(self.quote) > 300:
+            raise ValidationError("Слишком длинная цитата (максимум 300 символов)")
+        if len(self.quote) < 3:
+            raise ValidationError("Слишком короткая цитата (минимум 3 символов)")
 
     def like(self):
         self.likes += 1
