@@ -6,7 +6,8 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-<h1>Добавить цитату</h1>
+    {% include 'blocks/navbar_block.html' %}
+    <h1>Добавить цитату</h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}

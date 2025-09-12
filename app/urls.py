@@ -11,6 +11,7 @@ urlpatterns = [
     path('like/<int:quote_id>/', LikeQuoteView.as_view(), name='like_quote'),
     path('dislike/<int:quote_id>/', DislikeQuoteView.as_view(), name='dislike_quote'),
     path('quote/edit/<int:pk>/', EditQuoteView.as_view(), name='edit_quote'),
+
     path('register/', RegisterView.as_view(), name='register'),
     path('login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(next_page='index'), name='logout')

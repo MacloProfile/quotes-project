@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
+    {% include 'blocks/navbar_block.html' %}
     <h1>Топ 10 цитат по лайкам</h1>
 
     {% for quote in top_quotes %}

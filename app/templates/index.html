@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
+    {% include 'blocks/navbar_block.html' %}
     <h1>Случайная цитата</h1>
 
     {% if quote %}
@@ -13,7 +14,5 @@
     {% else %}
         <p>Цитат пока нет</p>
     {% endif %}
-
-    <a href="{% url 'top_quotes' %}">Топ 10 цитат</a>
 </body>
 </html>

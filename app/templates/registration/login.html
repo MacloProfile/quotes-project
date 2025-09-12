@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
+    {% include 'blocks/navbar_block.html' %}
     <h1>Вход</h1>
     <form method="post">
         {% csrf_token %}
