@@ -14,7 +14,7 @@
             <div class="quote-card">
                 <p>{{ quote.quote }}</p>
                 <p><strong>Источник:</strong> {{quote.source}}</p>
-                <p>👍 {{ quote.likes }} | 👎 {{ quote.dislikes }}</p>
+                <p>👁 {{ quote.views }} | 👍 {{ quote.likes }} | 👎 {{ quote.dislikes }}</p>
                 <p><a href="{% url 'edit_quote' quote.id %}">Редактировать</a></p>
             </div>
         {% empty %}

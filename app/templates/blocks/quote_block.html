@@ -15,6 +15,6 @@
         </form>
     </div>
     {% else %}
-        <p>Лайки: {{quote.likes}} | Дизлайки: {{quote.dislikes}}</p>
+        <p>👁 {{ quote.views }} | 👍 {{ quote.likes }} | 👎 {{ quote.dislikes }}</p>
     {% endif %}
 </div>
