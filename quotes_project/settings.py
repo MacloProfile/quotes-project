@@ -50,7 +50,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'quotes_project.wsgi.application'
 
-STATIC_URL = '/static/'
+STATIC_URL = 'app/static/'
 
 LANGUAGE_CODE = 'ru-ru'
 TIME_ZONE = 'Europe/Moscow'

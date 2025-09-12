@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Профиль</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    {% include 'blocks/navbar_block.html' %}
+    <h1>Мои цитаты</h1>
+
+    <div class="quotes-grid">
+        {% for quote in quotes %}
+            <div class="quote-card">
+                <p>{{ quote.quote }}</p>
+                <p><strong>Источник:</strong> {{quote.source}}</p>
+                <p>👍 {{ quote.likes }} | 👎 {{ quote.dislikes }}</p>
+                <p><a href="{% url 'edit_quote' quote.id %}">Редактировать</a></p>
+            </div>
+        {% empty %}
+            <p>У вас ещё нет цитат.</p>
+        {% endfor %}
+    </div>
+
+    <div class="pagination">
+        {% if is_paginated %}
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}">Назад</a>
+            {% endif %}
+            <span>Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}</span>
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">Вперед</a>
+            {% endif %}
+        {% endif %}
+    </div>
+</body>
+</html>
