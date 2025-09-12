@@ -6,6 +6,7 @@ from django.urls import reverse_lazy
 import random
 
 from app.forms.quote_add_form import QuoteAdd
+from app.models.owner import Owner
 from app.models.quote import Quote
 
 
@@ -37,6 +38,12 @@ class AddQuoteView(CreateView):
     form_class = QuoteAdd
     template_name = 'add_quote.html'
     success_url = reverse_lazy('index')
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        if self.request.user.is_authenticated:
+            Owner.objects.create(quote_id=self.object.id, user=self.request.user)
+        return response
 
 
 class EditQuoteView(UpdateView):
