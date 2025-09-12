@@ -7,14 +7,24 @@
 </head>
 <body>
     {% include 'blocks/navbar_block.html' %}
-    <h1>Топ 10 цитат по лайкам</h1>
+    <h1>
+        {% if current_sort == 'likes' %}Топ 10 цитат по лайкам{% endif %}
+        {% if current_sort == 'dislikes' %}Топ 10 цитат по дизлайкам{% endif %}
+        {% if current_sort == 'views' %}Топ 10 цитат по просмотрам{% endif %}
+    </h1>
 
-    {% for quote in top_quotes %}
+    <div class="filters">
+        <a href="?sort=likes">По лайкам</a> |
+        <a href="?sort=dislikes">По дизлайкам</a> |
+        <a href="?sort=views">По просмотрам</a> |
+    </div>
+
+    <div>
+        {% for quote in top_quotes %}
         {% include 'blocks/quote_block.html' with quote=quote can_vote=False %}
-    {% empty %}
-        <p>Цитат пока нет</p>
-    {% endfor %}
-
-    <a href="{% url 'index' %}">Назад</a>
+        {% empty %}
+            <p>Цитат пока нет</p>
+        {% endfor %}
+    </div>
 </body>
 </html>

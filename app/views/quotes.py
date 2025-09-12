@@ -24,15 +24,6 @@ class IndexView(View):
         return render(request, self.template_name, {'quote': quote})
 
 
-class TopQuotesView(ListView):
-    model = Quote
-    template_name = 'top.html'
-    context_object_name = 'top_quotes'
-
-    def get_queryset(self):
-        return Quote.objects.order_by('-likes')[:10]
-
-
 class AddQuoteView(CreateView):
     model = Quote
     form_class = QuoteAdd

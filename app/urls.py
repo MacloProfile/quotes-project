@@ -3,7 +3,8 @@ from django.contrib.auth import views as auth_views
 
 from app.views.auth import RegisterView
 from app.views.profile import ProfileView
-from app.views.quotes import IndexView, TopQuotesView, AddQuoteView, LikeQuoteView, DislikeQuoteView, EditQuoteView
+from app.views.quotes import IndexView, AddQuoteView, LikeQuoteView, DislikeQuoteView, EditQuoteView
+from app.views.top_quotes import TopQuotesView
 
 urlpatterns = [
     path('', IndexView.as_view(), name='index'),
