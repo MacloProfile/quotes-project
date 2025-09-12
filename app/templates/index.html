@@ -11,6 +11,7 @@
 
     {% if quote %}
         {% include 'blocks/quote_block.html' with quote=quote can_vote=True %}
+        <a href="{% url 'edit_quote' quote.id %}">✏️ Редактировать цитату</a>
     {% else %}
         <p>Цитат пока нет</p>
     {% endif %}
