@@ -1,17 +1,30 @@
-<div class="quote">
+<div class="quote" style="border:1px solid #ccc; padding:15px; border-radius:8px; margin-bottom:15px;">
     <p>{{ quote.quote }}</p>
     <p><strong>Источник:</strong> {{quote.source}}</p>
     <p><strong>Просмотры:</strong> {{quote.views}}</p>
 
     {% if can_vote %}
-    <div class="buttons">
-        <form method="post" action="{% url 'like_quote' quote.id %}">
+    <div class="buttons" style="margin-top:10px;">
+        <form method="post" action="{% url 'vote_quote' quote.id 'like' %}" style="display:inline;">
             {% csrf_token %}
-            <button type="submit" class="like">👍 Лайк ({{ quote.likes }})</button>
+            <button type="submit"
+                style="padding:6px 12px; margin-right:5px; border:none; border-radius:5px; cursor:pointer;
+                       background-color: {% if user_vote == 'like' %}#4caf50{% else %}#d4edda{% endif %};
+                       color:{% if user_vote == 'like' %}white{% else %}black{% endif %};
+                       font-weight:{% if user_vote == 'like' %}bold{% else %}normal{% endif %};">
+                👍 Лайк ({{ quote.likes }})
+            </button>
         </form>
-        <form method="post" action="{% url 'dislike_quote' quote.id %}">
+
+        <form method="post" action="{% url 'vote_quote' quote.id 'dislike' %}" style="display:inline;">
             {% csrf_token %}
-            <button type="submit" class="dislike">👎 Дизлайк ({{ quote.dislikes }})</button>
+            <button type="submit"
+                style="padding:6px 12px; margin-right:5px; border:none; border-radius:5px; cursor:pointer;
+                       background-color: {% if user_vote == 'dislike' %}#f44336{% else %}#f8d7da{% endif %};
+                       color:{% if user_vote == 'dislike' %}white{% else %}black{% endif %};
+                       font-weight:{% if user_vote == 'dislike' %}bold{% else %}normal{% endif %};">
+                👎 Дизлайк ({{ quote.dislikes }})
+            </button>
         </form>
     </div>
     {% else %}
