@@ -12,7 +12,7 @@ class TopQuotesView(ListView):
     def get_queryset(self):
         sort = self.request.GET.get('sort', '-likes')
         sort_result = QUOTE_SORT_VARIANTS.get(sort, '-likes')
-        return Quote.objects.order_by(sort_result)[:10]
+        return Quote.objects.filter(status=True).order_by(sort_result)[:10]
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

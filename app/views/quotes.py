@@ -17,7 +17,7 @@ class IndexView(View):
     template_name = 'index.html'
 
     def get(self, request, *args, **kwargs):
-        quotes = list(Quote.objects.all())
+        quotes = list(Quote.objects.filter(status=True))
         quote = None
         user_vote = None
 
