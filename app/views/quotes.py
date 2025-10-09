@@ -4,6 +4,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
 from django.views.generic import ListView, CreateView, UpdateView
 from django.urls import reverse_lazy
+from app.tasks.check_new_quote import moderate_quote_task
 
 import random
 
@@ -50,6 +51,7 @@ class AddQuoteView(CreateView):
         response = super().form_valid(form)
         if self.request.user.is_authenticated:
             Owner.objects.create(quote_id=self.object.id, user=self.request.user)
+        moderate_quote_task.delay(self.object.id)
         return response
 
 

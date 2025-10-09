@@ -12,6 +12,17 @@ class Quote(models.Model):
     likes = models.IntegerField(default=0)
     dislikes = models.IntegerField(default=0)
     created_at_time = models.DateTimeField(auto_now_add=True)
+    status = models.BooleanField(
+        default=None,
+        null=True,
+        blank=True,
+        help_text="Статус модерации: True — одобрено, False — отклонено, None — ещё не проверено."
+    )
+    moderation_comment = models.TextField(
+        blank=True,
+        null=True,
+        help_text="Комментарий модератора или ИИ о причине отказа/одобрения."
+    )
 
     objects = models.Manager()
 
