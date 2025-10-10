@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Удаление цитаты</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/remove.css' %}">
+</head>
+<body>
+{% include 'blocks/navbar_block.html' %}
+<div class="delete-quote">
+    <h1>Удаление цитаты</h1>
+    <p>Вы уверены, что хотите удалить эту цитату?</p>
+    <p class="quote-text">«{{ object.quote }}»</p>
+    <p class="quote-source">— {{ object.source }}</p>
+
+    <div class="buttons">
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="delete-btn">Удалить</button>
+        </form>
+        <a href="{% url 'profile' %}" class="cancel-btn">Отмена</a>
+    </div>
+</div>
+
+</body>
+</html>

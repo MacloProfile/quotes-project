@@ -1,0 +1,88 @@
+/* remove.css — стили для страницы удаления цитаты */
+
+.delete-quote {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 25px 30px;
+    border-left: 8px solid #f44336;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.delete-quote h1 {
+    font-size: 26px;
+    margin-bottom: 15px;
+    color: #f44336;
+}
+
+.delete-quote p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin: 10px 0;
+}
+
+.quote-text {
+    font-style: italic;
+    font-weight: 500;
+    font-size: 20px;
+    color: #333;
+}
+
+.quote-source {
+    font-weight: bold;
+    color: #555;
+}
+
+.delete-quote .buttons {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.delete-quote .buttons > * {
+    flex: 1;
+    max-width: 180px;
+    display: flex;
+}
+
+.delete-quote .buttons button,
+.delete-quote .buttons a {
+    flex: 1;
+    padding: 12px 0;
+    border-radius: 8px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.delete-btn {
+    background-color: #f44336;
+    color: white;
+    border: none;
+}
+
+.delete-btn:hover {
+    background-color: #d32f2f;
+    transform: scale(1.05);
+}
+
+.cancel-btn {
+    background-color: #e0e0e0;
+    color: #333;
+    margin-top: -1px;
+}
+
+.cancel-btn:hover {
+    background-color: #bdbdbd;
+    transform: scale(1.05);
+}

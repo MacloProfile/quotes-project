@@ -23,7 +23,13 @@
                     {% endif %}
                 </p>
 
-                <p><a href="{% url 'edit_quote' quote.id %}">Редактировать</a></p>
+                <p>
+                    <a href="{% url 'edit_quote' quote.id %}">Редактировать</a> |
+                    <a href="{% url 'delete_quote' quote.id %}"
+                       onclick="return confirm('Вы уверены, что хотите удалить эту цитату?');"
+                       style="color: red;">Удалить</a>
+                </p>
+
             </div>
         {% empty %}
             <p>У вас ещё нет цитат.</p>

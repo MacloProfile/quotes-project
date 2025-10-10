@@ -2,6 +2,7 @@ from django.urls import path
 from django.contrib.auth import views as auth_views
 
 from app.views.actions_with_quotes.add_quote import AddQuoteView
+from app.views.actions_with_quotes.delete_quote import DeleteQuoteView
 from app.views.actions_with_quotes.edit_quote import EditQuoteView
 from app.views.actions_with_quotes.vote_quote import VoteQuoteView
 from app.views.auth import RegisterView
@@ -14,6 +15,9 @@ urlpatterns = [
     path('', IndexView.as_view(), name='index'),
     path('top/', TopQuotesView.as_view(), name='top_quotes'),
     path('add/', AddQuoteView.as_view(), name='add_quote'),
+
+    path('delete/<int:pk>/', DeleteQuoteView.as_view(), name='delete_quote'),
+
     path('vote/<int:quote_id>/<str:vote_type>/', VoteQuoteView.as_view(), name='vote_quote'),
     path('quote/edit/<int:pk>/', EditQuoteView.as_view(), name='edit_quote'),
 
