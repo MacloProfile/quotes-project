@@ -11,7 +11,7 @@ def moderate_quote_task(quote_id: int):
         quote_obj = Quote.objects.get(id=quote_id)
         checker = QuoteChecker()
         if quote_obj.status is None:
-            ai_ok, ai_comment = checker.check(quote_obj.quote)
+            ai_ok, ai_comment = checker.check(quote_obj.quote, quote_obj.source)
             quote_obj.status = ai_ok
             quote_obj.moderation_comment = ai_comment
             quote_obj.save()

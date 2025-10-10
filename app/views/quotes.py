@@ -61,6 +61,15 @@ class EditQuoteView(UpdateView):
     template_name = 'edit_quote.html'
     success_url = reverse_lazy('index')
 
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        self.object.status = None
+        self.object.moderation_comment = None
+        self.object.save(update_fields=['status', 'moderation_comment'])
+
+        moderate_quote_task.delay(self.object.id)
+        return response
+
 
 class VoteQuoteView(View):
     def post(self, request, quote_id, vote_type, *args, **kwargs):
