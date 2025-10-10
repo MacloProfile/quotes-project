@@ -18,10 +18,10 @@ class QuoteChecker:
         text = quote.lower()
         return any(bad_word in text for bad_word in self.blacklist)
 
-    def check(self, quote: str) -> tuple[bool, str] | bool:
+    def check(self, quote: str, source: str) -> tuple[bool, str] | bool:
         prompt = (
-            f"Проверь цитату: «{quote}». "
-            "Если она достоверна и подходит для публикации, ответь 'Да'. "
+            f"Проверь цитату: «{quote}» и название источника «{source}»"
+            "Если она подходит для публикации, ответь 'Да'. "
             "Если цитата сомнительная, запрещённая, содержит ненормативную лексику и не является случайным набором символов и тп, ответь 'Нет'."
             "Отвечай ТОЛЬКО Да или Нет"
         )
