@@ -1,15 +1,10 @@
 import json
 
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render
 from django.views import View
-from django.views.generic import ListView, CreateView, UpdateView
-from django.urls import reverse_lazy
-from app.tasks.check_new_quote import moderate_quote_task
 
 import random
 
-from app.forms.quote_add_form import QuoteAdd
-from app.models.owner import Owner
 from app.models.quote import Quote
 
 
@@ -39,70 +34,3 @@ class IndexView(View):
             'quote': quote,
             'user_vote': user_vote
         })
-
-
-class AddQuoteView(CreateView):
-    model = Quote
-    form_class = QuoteAdd
-    template_name = 'add_quote.html'
-    success_url = reverse_lazy('index')
-
-    def form_valid(self, form):
-        response = super().form_valid(form)
-        if self.request.user.is_authenticated:
-            Owner.objects.create(quote_id=self.object.id, user=self.request.user)
-        moderate_quote_task.delay(self.object.id)
-        return response
-
-
-class EditQuoteView(UpdateView):
-    model = Quote
-    form_class = QuoteAdd
-    template_name = 'edit_quote.html'
-    success_url = reverse_lazy('index')
-
-    def form_valid(self, form):
-        response = super().form_valid(form)
-        self.object.status = None
-        self.object.moderation_comment = None
-        self.object.save(update_fields=['status', 'moderation_comment'])
-
-        moderate_quote_task.delay(self.object.id)
-        return response
-
-
-class VoteQuoteView(View):
-    def post(self, request, quote_id, vote_type, *args, **kwargs):
-        quote = get_object_or_404(Quote, pk=quote_id)
-
-        voted_json = request.COOKIES.get("voted_quotes", "{}")
-        try:
-            voted_dict = json.loads(voted_json)
-        except json.JSONDecodeError:
-            voted_dict = {}
-
-        prev_vote = voted_dict.get(str(quote_id))
-
-        if prev_vote == vote_type:
-            return redirect(request.META.get("HTTP_REFERER", "index"))
-
-        if prev_vote == "like":
-            quote.likes = max(0, quote.likes - 1)
-        elif prev_vote == "dislike":
-            quote.dislikes = max(0, quote.dislikes - 1)
-
-        if vote_type == "like":
-            quote.likes += 1
-        elif vote_type == "dislike":
-            quote.dislikes += 1
-
-        quote.save()
-
-        voted_dict[str(quote_id)] = vote_type
-        response = redirect(request.META.get("HTTP_REFERER", "index"))
-        response.set_cookie(
-            "voted_quotes",
-            json.dumps(voted_dict),
-            max_age=365 * 24 * 60 * 60
-        )
-        return response

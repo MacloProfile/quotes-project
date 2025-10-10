@@ -1,9 +1,13 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
 
+from app.views.actions_with_quotes.add_quote import AddQuoteView
+from app.views.actions_with_quotes.edit_quote import EditQuoteView
+from app.views.actions_with_quotes.vote_quote import VoteQuoteView
 from app.views.auth import RegisterView
 from app.views.profile import ProfileView
-from app.views.quotes import IndexView, AddQuoteView, EditQuoteView, VoteQuoteView
+from app.views.quotes import IndexView
+
 from app.views.top_quotes import TopQuotesView
 
 urlpatterns = [
