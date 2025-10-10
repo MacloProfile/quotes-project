@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Топ 10 цитат</title>
+    <title>Топ цитат</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
     {% include 'blocks/navbar_block.html' %}
     <h1>
-        {% if current_sort == 'likes' %}Топ 10 цитат по лайкам{% endif %}
-        {% if current_sort == 'dislikes' %}Топ 10 цитат по дизлайкам{% endif %}
-        {% if current_sort == 'views' %}Топ 10 цитат по просмотрам{% endif %}
+        {% if current_sort == 'likes' %}Топ цитат по лайкам{% endif %}
+        {% if current_sort == 'dislikes' %}Топ цитат по дизлайкам{% endif %}
+        {% if current_sort == 'views' %}Топ цитат по просмотрам{% endif %}
     </h1>
 
     <div class="filters">
@@ -25,6 +25,18 @@
         {% empty %}
             <p>Цитат пока нет</p>
         {% endfor %}
+    </div>
+
+        <div class="pagination">
+        {% if is_paginated %}
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}">Назад</a>
+            {% endif %}
+            <span>Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}</span>
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">Вперед</a>
+            {% endif %}
+        {% endif %}
     </div>
 
     {% include 'blocks/footer_block.html' %}

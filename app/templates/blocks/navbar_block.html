@@ -4,8 +4,8 @@
     </div>
 
     <div class="nav-right">
-        <a href="{% url 'top_quotes' %}" style="color: white; margin-right: 15px; text-decoration: none;">Топ 10 цитат</a>
-        <a href="{% url 'add_quote' %}" style="color: white; margin-right: 15px; text-decoration: none;">Добавить цитату</a>
+        <a href="{% url 'top_quotes' %}" style="color: white; margin-right: 15px; text-decoration: none;">Топ Цитат</a>
+        <a href="{% url 'add_quote' %}" style="color: white; margin-right: 15px; text-decoration: none;">Добавить Цитату</a>
         {% if user.is_authenticated %}
             <a href="{% url 'profile' %}" style="color: white; margin-right: 15px; text-decoration: none;">Профиль</a>
             <a href="{% url 'logout' %}" style="color: white; text-decoration: none;">Выход</a>

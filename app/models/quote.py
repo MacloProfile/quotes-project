@@ -27,8 +27,8 @@ class Quote(models.Model):
     objects = models.Manager()
 
     def clean(self):
-        if Quote.objects.filter(source=self.source).exclude(pk=self.pk).count() >= 3:
-            raise ValidationError(f'Для источника "{self.source}" уже есть 3 цитаты.')
+        if Quote.objects.filter(source=self.source).exclude(pk=self.pk).count() >= 99:
+            raise ValidationError(f'Для источника "{self.source}" уже есть 99 цитаты.')
         if self.weight < 1 or self.weight > 3:
             raise ValidationError("Вес цитаты должен быть в диапазоне от 1 до 3.")
         if len(self.quote) > 300:
