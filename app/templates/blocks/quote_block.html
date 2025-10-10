@@ -28,7 +28,11 @@
                 👎 Дизлайк ({{ quote.dislikes }})
             </button>
         </form>
+
     </div>
+    <form>
+        <a href="{% url 'index' %}">=> Следующая цитата</a>
+    </form>
     {% else %}
         <p>👁 {{ quote.views }} | 👍 {{ quote.likes }} | 👎 {{ quote.dislikes }}</p>
     {% endif %}
