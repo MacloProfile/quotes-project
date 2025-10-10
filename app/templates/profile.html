@@ -15,6 +15,14 @@
                 <p>{{ quote.quote }}</p>
                 <p><strong>Источник:</strong> {{quote.source}}</p>
                 <p>👁 {{ quote.views }} | 👍 {{ quote.likes }} | 👎 {{ quote.dislikes }}</p>
+                <p>Статус:
+                    {% if quote.moderation_comment %}
+                        {{ quote.moderation_comment }}
+                    {% else %}
+                        ⏳ Ожидает проверки модератором ИИ
+                    {% endif %}
+                </p>
+
                 <p><a href="{% url 'edit_quote' quote.id %}">Редактировать</a></p>
             </div>
         {% empty %}
