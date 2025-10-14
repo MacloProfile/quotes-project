@@ -6,7 +6,8 @@ from app.views.actions_with_quotes.delete_quote import DeleteQuoteView
 from app.views.actions_with_quotes.edit_quote import EditQuoteView
 from app.views.actions_with_quotes.vote_quote import VoteQuoteView
 from app.views.auth import RegisterView
-from app.views.profile import ProfileView
+from app.views.profile.edit_user_info import ProfileSettingsView
+from app.views.profile.profile import ProfileView
 from app.views.quotes import IndexView
 
 from app.views.top_quotes import TopQuotesView
@@ -22,6 +23,7 @@ urlpatterns = [
     path('quote/edit/<int:pk>/', EditQuoteView.as_view(), name='edit_quote'),
 
     path('profile/', ProfileView.as_view(), name='profile'),
+    path('profile/settings/', ProfileSettingsView.as_view(), name='profile_settings'),
 
     path('register/', RegisterView.as_view(), name='register'),
     path('login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),
