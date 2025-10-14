@@ -1,5 +1,6 @@
 import json
 
+from django.db.models import Count
 from django.shortcuts import render
 from django.views import View
 
@@ -30,7 +31,15 @@ class IndexView(View):
 
             user_vote = voted_dict.get(str(quote.id))
 
+        top_sources = (
+            Quote.objects.filter(status=True)
+            .values('source')
+            .annotate(count=Count('id'))
+            .order_by('-count')[:10]
+        )
+
         return render(request, self.template_name, {
             'quote': quote,
-            'user_vote': user_vote
+            'user_vote': user_vote,
+            'top_sources': top_sources
         })

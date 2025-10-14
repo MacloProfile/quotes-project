@@ -4,6 +4,7 @@
     <title>Случайная цитата</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/top_sources.css' %}">
 </head>
 <body>
     {% include 'blocks/navbar_block.html' %}
@@ -16,6 +17,23 @@
 
     {% else %}
         <p>Цитат пока нет</p>
+    {% endif %}
+
+    {% if top_sources %}
+        <div class="top-sources-title-wrapper">
+            <h2 class="top-sources-title">Топ 10 самых популярных источников</h2>
+        </div>
+
+        <div class="top-sources-card p-4 mb-4 rounded shadow-sm">
+            <ol class="mb-0 ps-3">
+                {% for item in top_sources %}
+                    <li class="source-item">
+                        <span class="source-name">{{ item.source }}</span>
+                        <span class="badge-count">{{ item.count }}</span>
+                    </li>
+                {% endfor %}
+            </ol>
+        </div>
     {% endif %}
 
     {% include 'blocks/footer_block.html' %}

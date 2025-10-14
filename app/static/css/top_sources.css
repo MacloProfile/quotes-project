@@ -1,0 +1,63 @@
+.top-sources-title-wrapper {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.top-sources-title {
+    font-size: 32px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.top-sources-card {
+    background: #ffffff;
+    border: 1px solid #ccc; /* рамка вместо полоски */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    border-radius: 10px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    padding: 20px;
+}
+
+.top-sources-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.top-sources-card h3 {
+    font-size: 22px; /* увеличим размер */
+    font-weight: 700;
+    color: #2e7d32;
+    text-align: center; /* центрируем */
+    margin-bottom: 20px;
+}
+
+.top-sources-card ol {
+    padding-left: 0;
+    list-style: none; /* убираем нумерацию */
+}
+
+.source-item {
+    padding: 8px 12px;
+    font-size: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+}
+
+.source-item:last-child {
+    border-bottom: none;
+}
+
+.badge-count {
+    background-color: #4CAF50;
+    color: #fff;
+    font-weight: bold;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 14px;
+}
+
+.source-name {
+    flex-grow: 1;
+}
