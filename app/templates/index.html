@@ -21,18 +21,37 @@
 
     {% if top_sources %}
         <div class="top-sources-title-wrapper">
-            <h2 class="top-sources-title">Топ 10 самых популярных источников</h2>
+            <h2 class="top-sources-title">Топ популярных источников</h2>
         </div>
 
         <div class="top-sources-card p-4 mb-4 rounded shadow-sm">
             <ol class="mb-0 ps-3">
                 {% for item in top_sources %}
                     <li class="source-item">
-                        <span class="source-name">{{ item.source }}</span>
-                        <span class="badge-count">{{ item.count }}</span>
+                        <span class="source-name">📖 {{ item.source }}</span>
+                        <span class="badge-count">{{ item.count }} цитат(ы)</span>
                     </li>
                 {% endfor %}
             </ol>
+        </div>
+    {% endif %}
+
+    {% if top_authors %}
+        <div class="top-authors-section">
+            <h2 class="top-sources-title">Топ авторов</h2>
+
+            <div class="top-sources-card p-4 mb-4 rounded shadow-sm">
+                <ol class="mb-0 ps-3">
+                    {% for author in top_authors %}
+                        <li class="source-item">
+                            <span class="source-name">✏️ {{ author.user__username }}</span>
+                            <span class="badge-count">
+                                {{ author.approved_quotes }} цитат(ы), {{ author.total_likes }} лайка(ов)
+                            </span>
+                        </li>
+                    {% endfor %}
+                </ol>
+            </div>
         </div>
     {% endif %}
 

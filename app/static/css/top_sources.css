@@ -1,4 +1,5 @@
-.top-sources-title-wrapper {
+.top-sources-title-wrapper,
+.top-authors-section .top-sources-title {
     text-align: center;
     margin-bottom: 20px;
 }
@@ -9,36 +10,30 @@
     margin: 0;
 }
 
+.top-sources-section,
+.top-authors-section {
+    text-align: left;
+    margin-bottom: 40px;
+}
+
 .top-sources-card {
     background: #ffffff;
-    border: 1px solid #ccc; /* рамка вместо полоски */
+    border: 1px solid #ccc;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     border-radius: 10px;
-    transition: transform 0.3s, box-shadow 0.3s;
     padding: 20px;
-}
-
-.top-sources-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-}
-
-.top-sources-card h3 {
-    font-size: 22px; /* увеличим размер */
-    font-weight: 700;
-    color: #2e7d32;
-    text-align: center; /* центрируем */
     margin-bottom: 20px;
 }
 
 .top-sources-card ol {
     padding-left: 0;
-    list-style: none; /* убираем нумерацию */
+    list-style: none;
+    margin: 0;
 }
 
 .source-item {
-    padding: 8px 12px;
-    font-size: 16px;
+    padding: 10px 12px;
+    font-size: 18px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -49,15 +44,16 @@
     border-bottom: none;
 }
 
+.source-name {
+    flex-grow: 1;
+    text-align: left;
+}
+
 .badge-count {
     background-color: #4CAF50;
     color: #fff;
     font-weight: bold;
-    padding: 3px 10px;
+    padding: 5px 12px;
     border-radius: 12px;
-    font-size: 14px;
-}
-
-.source-name {
-    flex-grow: 1;
+    font-size: 16px;
 }

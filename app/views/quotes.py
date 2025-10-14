@@ -1,11 +1,12 @@
 import json
 
-from django.db.models import Count
+from django.db.models import Count, Sum
 from django.shortcuts import render
 from django.views import View
 
 import random
 
+from app.models.owner import Owner
 from app.models.quote import Quote
 
 
@@ -38,8 +39,20 @@ class IndexView(View):
             .order_by('-count')[:10]
         )
 
+        top_authors = (
+            Owner.objects
+            .filter(quote__status=True)
+            .values('user__username')
+            .annotate(
+                approved_quotes=Count('quote'),
+                total_likes=Sum('quote__likes')
+            )
+            .order_by('-total_likes')[:10]
+        )
+
         return render(request, self.template_name, {
             'quote': quote,
             'user_vote': user_vote,
-            'top_sources': top_sources
+            'top_sources': top_sources,
+            'top_authors': top_authors,
         })
