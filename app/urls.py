@@ -8,6 +8,7 @@ from app.views.actions_with_quotes.vote_quote import VoteQuoteView
 from app.views.auth import RegisterView
 from app.views.profile.edit_user_info import ProfileSettingsView
 from app.views.profile.profile import ProfileView
+from app.views.quote_detail_view import QuoteAddedView
 from app.views.quotes import IndexView
 
 from app.views.top_quotes import TopQuotesView
@@ -16,6 +17,7 @@ urlpatterns = [
     path('', IndexView.as_view(), name='index'),
     path('top/', TopQuotesView.as_view(), name='top_quotes'),
     path('add/', AddQuoteView.as_view(), name='add_quote'),
+    path('quote/<int:pk>/added/', QuoteAddedView.as_view(), name='quote_added'),
 
     path('delete/<int:pk>/', DeleteQuoteView.as_view(), name='delete_quote'),
 

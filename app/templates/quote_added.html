@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Цитата добавлена</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    {% include 'blocks/navbar_block.html' %}
+
+    <div class="quote-added-container">
+        <h1 class="quote-added-title">Цитата успешно добавлена!</h1>
+
+        <div class="quote-card">
+            <p class="quote-text">"{{ quote.quote }}"</p>
+            <p class="quote-source">Источник: <strong>{{ quote.source }}</strong></p>
+            <p class="quote-status">
+                Статус модерации:
+                {% if quote.status == True %}
+                    <span class="status-approved">✅ Одобрена</span>
+                {% elif quote.status == False %}
+                    <span class="status-rejected">❌ Отклонена</span>
+                {% else %}
+                    <span class="status-pending">⏳ На модерации</span>
+                {% endif %}
+            </p>
+
+            {% if quote.moderation_comment %}
+                <p class="moderation-comment">
+                    💬 Комментарий модерации: {{ quote.moderation_comment }}
+                </p>
+            {% endif %}
+        </div>
+    </div>
+
+    {% include 'blocks/footer_block.html' %}
+</body>
+</html>
