@@ -1,0 +1,10 @@
+<h1>Массовое добавление цитат</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="button default">Добавить и одобрить цитаты</button>
+</form>
+
+<p><a href=".." class="button">Назад</a></p>
+
