@@ -1,0 +1,15 @@
+{% extends "password_reset/base_reset.html" %}
+
+{% block title %}Восстановление пароля{% endblock %}
+
+{% block content %}
+<h2>Восстановление пароля</h2>
+<p>Введите ваш email, и мы вышлем ссылку для сброса пароля.</p>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.email }}
+    <button type="submit" class="btn btn-green">Отправить ссылку</button>
+</form>
+
+{% endblock %}

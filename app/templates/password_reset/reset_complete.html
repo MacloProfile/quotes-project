@@ -1,0 +1,9 @@
+{% extends "password_reset/base_reset.html" %}
+
+{% block title %}Пароль изменён{% endblock %}
+
+{% block content %}
+<h2>Пароль успешно изменён!</h2>
+<p>Теперь вы можете войти, используя новый пароль.</p>
+<a href="{% url 'login' %}" class="btn btn-green">Войти</a>
+{% endblock %}

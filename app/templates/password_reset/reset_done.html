@@ -1,0 +1,9 @@
+{% extends "password_reset/base_reset.html" %}
+
+{% block title %}Ссылка отправлена{% endblock %}
+
+{% block content %}
+<h2>Ссылка для сброса пароля отправлена</h2>
+<p>Проверьте ваш email. Если письмо не пришло - проверьте папку "Спам".</p>
+<a href="{% url 'login' %}" class="btn btn-green">Вернуться на вход</a>
+{% endblock %}
